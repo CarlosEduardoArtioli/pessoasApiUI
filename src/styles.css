@@ -1,1 +1,73 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif, Arial;
+}
+
+label {
+  font-weight: bold;
+}
+
+.col-id-header {
+  width: 80px;
+  text-align: center;
+}
+
+.col-id {
+  width: 80px;
+  text-align: center;
+}
+
+.col-acoes-header {
+  width: 120px;
+  text-align: center;
+}
+
+.col-acoes {
+  width: 120px;
+  text-align: center;
+}
+
+.col-cepPessoa-header {
+  width: 120px;
+}
+
+.col-cidadePessoa-header {
+  width: 160px;
+}
+
+.col-estadoPessoa-header {
+  width: 80px;
+}
+
+.col-ativoPessoa-header {
+  width: 80px;
+}
+
+.col-cepPessoa {
+  width: 120px;
+}
+
+.col-cidadePessoa {
+  width: 160px;
+}
+
+.col-estadoPessoa {
+  text-align: center;
+  width: 80px;
+}
+
+.col-ativoPessoa {
+  text-align: center;
+  width: 80px;
+}
+
+@media(min-width:1200px) {
+  .container {
+    width: 930px;
+    margin: 0 auto;
+  }
+}
+
+body .ui-button {
+  margin: 0 2px;
+}

@@ -1,0 +1,83 @@
+<div class="container">
+  <form autocomplete="off" (ngSubmit)="pesquisar()">
+    <div class="p-fluid p-grid">
+      <div class="p-col-12">
+        <h1>Pessoas</h1>
+      </div>
+
+      <div class="p-col-6 p-field">
+        <label>Nome da Pessoa</label>
+        <input type="text" pInputText name="nome" [(ngModel)]="filtro.nome" />
+      </div>
+
+      <div class="p-col-4 p-field">
+        <label>Cidade</label>
+        <input type="text" pInputText name="cidade" [(ngModel)]="filtro.cidade" />
+      </div>
+      <div class="p-col-2 p-field">
+        <label>Estado</label>
+        <input type="text" pInputText name="estado" [(ngModel)]="filtro.estado" />
+      </div>
+    </div>
+    <div class="p-d-flex p-jc-center">
+      <button style="width: 500px;" pButton type="submit" label="Pesquisar"></button>
+    </div>
+  </form>
+
+  <br>
+
+  <div class="p-fluid p-grid">
+    <div class="p-col-12">
+      <p-table [value]="pessoas" [paginator]="true" [rows]="filtro.itensPorPagina" [totalRecords]="totalRegistros"
+        [lazy]="true" [responsive]="true" (onLazyLoad)="aoMudarPagina($event)" #tabela>
+        <ng-template pTemplate="header">
+          <tr>
+            <th class="col-id-header">#</th>
+            <th class="col-nomePessoa-header">Nome</th>
+            <th class="col-cepPessoa-header">Cep</th>
+            <th class="col-cidadePessoa-header">Cidade</th>
+            <th class="col-estadoPessoa-header">Estado</th>
+            <th class="col-ativoPessoa-header">Ativo</th>
+            <th class="col-acoes-header">Ações</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-pes>
+          <tr>
+            <td class="col-id">{{pes.codigo}}</td>
+            <td class="col-nomePessoa">{{pes.nome}}</td>
+            <td class="col-cepPessoa">{{pes.cep}}</td>
+            <td class="col-cidadePessoa">{{pes.cidade}}</td>
+            <td class="col-estadoPessoa">{{pes.estado}}</td>
+            <td class="col-ativoPessoa" style="text-align: center;" *ngIf="pes.ativo">
+              <i class="pi pi-circle-on" style="color: green"></i>
+            </td>
+            <td class="col-ativoPessoa" style="text-align: center;" *ngIf="!pes.ativo">
+              <i class="pi pi-circle-on" style="color: gray"></i>
+            </td>
+            <td class="col-acoes">
+              <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
+                [routerLink]="['/pessoas', pes.codigo]"></a>
+              &nbsp;
+              <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
+                (click)="confirmarExclusao(pes)"></button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="12">
+              Nenhuma pessoa encontrada.
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+
+      <br>
+
+      <div class="p-col-3">
+        <a pButton label="Nova Pessoa" routerLink="/pessoas/novo"></a>
+      </div>
+
+    </div>
+  </div>
+</div>
